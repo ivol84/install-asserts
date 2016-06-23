@@ -1,0 +1,21 @@
+{
+  "name": "ivol/install-validator",
+  "description": "Allows to check installation of web project.",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Dzmitry Shalukhau",
+      "email": "ivol84@gmail.com",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {"ivol\\": "src/"}
+  },
+  "require": {
+    "php": ">=5.4.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "4.8.26"
+  }
+}
