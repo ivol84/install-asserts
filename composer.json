@@ -13,7 +13,7 @@
     "psr-4": {"ivol\\": ["src/", "test/"]}
   },
   "require": {
-    "php": ">=5.4.0",
+    "php": ">=5.5.0",
     "phpunit/phpunit": "4.8.26",
     "guzzlehttp/guzzle": "~6.0"
   }
