@@ -1,5 +1,8 @@
 install-asserts
 ============
+[![Build Status](https://travis-ci.org/ivol84/install-asserts.svg?branch=master)](https://travis-ci.org/ivol84/install-asserts)
+
+
 Contains asserts that allow to check resource permissions/exists.
 Also it allows to check external service availibility.
 
