@@ -1,6 +1,6 @@
 {
-  "name": "ivol/install-validator",
-  "description": "Allows to check installation of web project.",
+  "name": "ivol/install-asserts",
+  "description": "Allows to test installation of web project.",
   "license": "MIT",
   "authors": [
     {
