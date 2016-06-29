@@ -10,12 +10,11 @@
     }
   ],
   "autoload": {
-    "psr-4": {"ivol\\": "src/"}
+    "psr-4": {"ivol\\": ["src/", "test/"]}
   },
   "require": {
-    "php": ">=5.4.0"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "4.8.26"
+    "php": ">=5.4.0",
+    "phpunit/phpunit": "4.8.26",
+    "guzzlehttp/guzzle": "~6.0"
   }
 }
