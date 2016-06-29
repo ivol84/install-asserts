@@ -11,7 +11,7 @@ TODO: Add after registering in composer.
 
 Usage
 -----
-See example in see [AssertTest](https://github.com/ivol84/install-asserts/blob/master/test/AssertTest.php).
+See example in see [AssertTest](https://github.com/ivol84/install-asserts/blob/master/tests/AssertTest.php).
 
 
 License
