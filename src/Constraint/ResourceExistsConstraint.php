@@ -3,9 +3,7 @@ namespace ivol\Constraint;
 
 class ResourceExistsConstraint extends \PHPUnit_Framework_Constraint
 {
-    /**
-     * @param string $resourceURI
-     */
+
     public function __construct()
     {
         parent::__construct();
