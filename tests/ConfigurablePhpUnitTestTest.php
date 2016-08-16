@@ -6,8 +6,6 @@ class ConfigurablePhpUnitTestTest extends \PHPUnit_Framework_TestCase
     /** @var ConfigurablePhpUnitTest */
     private $sut;
 
-
-
     protected function setUp()
     {
         $this->sut = new ConfigurablePhpUnitTest();
@@ -27,6 +25,17 @@ class ConfigurablePhpUnitTestTest extends \PHPUnit_Framework_TestCase
 
     public function testOnAssertOnCustomClassWithAssert() {
         $this->sut->addAssert(array('ivol\CustomAssert::assertInCustomClass'=> array()));
+
+        $this->sut->testSystemConfiguration();
+
+        $this->assertTrue(CustomAssert::$isCalled);
+    }
+
+    public function testOnAssertOnMultipleCalls() {
+        $this->sut->addAssert(array('assertEquals'=> array(4,4)));
+        $this->sut->addAssert(array('assertResourceExists'=> array(__FILE__)));
+        $this->sut->addAssert(array('ivol\CustomAssert::assertInCustomClass'=> array()));
+        $this->sut->addAssert(array('assertEquals'=> array(4,4)));
 
         $this->sut->testSystemConfiguration();
 
