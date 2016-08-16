@@ -12,7 +12,8 @@ class ConfigurablePhpUnitTest extends \PHPUnit_Framework_TestCase
     {
         foreach ($this->asserts as $assert) {
             $assertClass = '';
-            $assertMethod = array_pop(array_keys($assert));
+            $methods = array_keys($assert);
+            $assertMethod = $methods[0];
             $assertParams = $assert[$assertMethod];
             $classAndMethod = preg_split('/::/', $assertMethod);
             if (count($classAndMethod) == 2 && is_callable($classAndMethod[0], $classAndMethod[1])) {
@@ -33,5 +34,4 @@ class ConfigurablePhpUnitTest extends \PHPUnit_Framework_TestCase
     {
         $this->asserts[] = $assert;
     }
-
 }
