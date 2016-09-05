@@ -1,5 +1,7 @@
 <?php
-namespace ivol;
+namespace ivol\tests;
+
+use ivol\ConfigurablePhpUnitTest;
 
 class ConfigurablePhpUnitTestTest extends \PHPUnit_Framework_TestCase
 {
@@ -27,7 +29,7 @@ class ConfigurablePhpUnitTestTest extends \PHPUnit_Framework_TestCase
 
     public function testOnAssertOnCustomClassWithAssert()
     {
-        ConfigurablePhpUnitTest::addAssert(array('ivol\CustomAssert::assertInCustomClass'=> array()));
+        ConfigurablePhpUnitTest::addAssert(array(CustomAssert::__CLASS . '::assertInCustomClass'=> array()));
 
         $this->sut->testSystemConfiguration();
 
@@ -38,7 +40,7 @@ class ConfigurablePhpUnitTestTest extends \PHPUnit_Framework_TestCase
     {
         ConfigurablePhpUnitTest::addAssert(array('assertEquals'=> array(4,4)));
         ConfigurablePhpUnitTest::addAssert(array('assertResourceExists'=> array(__FILE__)));
-        ConfigurablePhpUnitTest::addAssert(array('ivol\CustomAssert::assertInCustomClass'=> array()));
+        ConfigurablePhpUnitTest::addAssert(array(CustomAssert::__CLASS . '::assertInCustomClass'=> array()));
         ConfigurablePhpUnitTest::addAssert(array('assertEquals'=> array(4,4)));
 
         $this->sut->testSystemConfiguration();
@@ -61,6 +63,7 @@ class ConfigurablePhpUnitTestTest extends \PHPUnit_Framework_TestCase
 
 class CustomAssert
 {
+    const __CLASS = __CLASS__;
     public static $isCalled = false;
 
     public static function assertInCustomClass()

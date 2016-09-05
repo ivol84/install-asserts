@@ -11,6 +11,12 @@ class PhpUnitXmlLoader implements PHPUnit_Runner_TestSuiteLoader
      */
     public function load($suiteClassName, $suiteClassFile = '')
     {
+        if (!$suiteClassFile) {
+            $suiteClassFile = 'check_installation.xml';
+        }
+        $suiteClassName = \ivol\ConfigurablePhpUnitTest::__CLASS;
+        $xml = new \Sabre\Xml\Service();
+        $result  = $xml->parse($suiteClassFile);
 
     }
 
@@ -21,6 +27,6 @@ class PhpUnitXmlLoader implements PHPUnit_Runner_TestSuiteLoader
      */
     public function reload(ReflectionClass $aClass)
     {
-
+        return $aClass;
     }
 }

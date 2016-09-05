@@ -10,11 +10,15 @@
     }
   ],
   "autoload": {
-    "psr-4": {"ivol\\": ["src/", "test/"]}
+    "psr-4": {
+      "ivol\\": ["src/"],
+      "ivol\\tests\\": ["test/"]
+    }
   },
   "require": {
     "php": ">=5.5.0",
     "phpunit/phpunit": "4.8.26",
-    "guzzlehttp/guzzle": "~6.0"
+    "guzzlehttp/guzzle": "~6.0",
+    "sabre/xml": "^1.4"
   }
 }

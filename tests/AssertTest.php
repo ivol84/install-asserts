@@ -1,6 +1,7 @@
 <?php
-namespace ivol;
+namespace ivol\tests;
 
+use ivol\Assert;
 use ivol\Common\PermissionFormatter;
 
 class AssertTest extends \PHPUnit_Framework_TestCase
