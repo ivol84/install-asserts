@@ -27,6 +27,14 @@ class ConfigurablePhpUnitTest extends \PHPUnit_Framework_TestCase
         self::$asserts[] = $assert;
     }
 
+    /**
+     * @return Model\AssertDescription[]
+     */
+    public static function getAsserts()
+    {
+        return self::$asserts;
+    }
+
     public static function clearAsserts()
     {
         self::$asserts = [];

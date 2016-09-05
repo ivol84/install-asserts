@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<test_suite>
+    <assert>
+        <name>assertEquals</name>
+        <params>
+            <param>4</param>
+            <param>4</param>
+        </params>
+    </assert>
+    <assert>
+        <name>assertServiceAvailable</name>
+        <params>
+            <param>http://www.google.com</param>
+            <param>200</param>
+        </params>
+    </assert>
+    <assert>
+        <name>ivol\tests\Helper\CustomAssert::assertInCustomClass</name>
+        <params>
+        </params>
+    </assert>
+</test_suite>

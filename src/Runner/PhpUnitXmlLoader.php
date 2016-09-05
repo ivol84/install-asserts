@@ -1,6 +1,12 @@
 <?php
+namespace ivol\Runner;
 
-class PhpUnitXmlLoader implements PHPUnit_Runner_TestSuiteLoader
+use ivol\ConfigurablePhpUnitTest;
+use ivol\Model\AssertFactory;
+use Sabre\Xml\Reader;
+use Sabre\Xml\Service;
+
+class PhpUnitXmlLoader implements \PHPUnit_Runner_TestSuiteLoader
 {
 
     /**
@@ -15,9 +21,21 @@ class PhpUnitXmlLoader implements PHPUnit_Runner_TestSuiteLoader
             $suiteClassFile = 'check_installation.xml';
         }
         $suiteClassName = \ivol\ConfigurablePhpUnitTest::__CLASS;
-        $xml = new \Sabre\Xml\Service();
-        $result  = $xml->parse($suiteClassFile);
-
+        $suiteClass = new \ReflectionClass($suiteClassName);
+        $asserts = new \SimpleXMLElement(file_get_contents($suiteClassFile));
+        if (!$asserts->assert) {
+            return $suiteClass;
+        }
+        $factory = new AssertFactory();
+        foreach ($asserts->assert as $assert) {
+            if (!$assert->name) {
+                // XXX: Add proper exception here
+                throw new \RuntimeException("Cannot parse xml element");
+            }
+            $assertParams = $assert->params->param ? (array) $assert->params->param: [];
+            ConfigurablePhpUnitTest::addAssert($factory->create(array((string) $assert->name => $assertParams)));
+        }
+        return $suiteClass;
     }
 
     /**
