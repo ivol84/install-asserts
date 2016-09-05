@@ -3,6 +3,7 @@ namespace ivol\tests\Model;
 
 use ivol\Model\AssertDescription;
 use ivol\Model\AssertFactory;
+use ivol\tests\Helper\CustomAssert;
 
 class AssertFactoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -35,6 +36,13 @@ class AssertFactoryTest extends \PHPUnit_Framework_TestCase
         $actual = $this->sut->create(array('assertResourceExists'=> array(__FILE__)));
 
         $this->assertEquals(new AssertDescription('ivol\Assert', 'assertResourceExists', array(__FILE__)), $actual);
+    }
+
+    public function testCreateOnCustomAssert()
+    {
+        $actual = $this->sut->create(array(CustomAssert::__CLASS . '::assertInCustomClass'=> array()));
+
+        $this->assertEquals(new AssertDescription(CustomAssert::__CLASS, 'assertInCustomClass', array()), $actual);
     }
 
 

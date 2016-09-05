@@ -12,7 +12,7 @@
   "autoload": {
     "psr-4": {
       "ivol\\": ["src/"],
-      "ivol\\tests\\": ["test/"]
+      "ivol\\tests\\": ["tests/"]
     }
   },
   "require": {
