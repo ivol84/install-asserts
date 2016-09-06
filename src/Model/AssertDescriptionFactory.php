@@ -3,6 +3,7 @@ namespace ivol\Model;
 
 class AssertDescriptionFactory
 {
+    const __CLASS = __CLASS__;
     /**
      * @param array $assert array('assertName' => array($assertParam1, $assertParam2, ..)
      * @return AssertDescription
