@@ -7,7 +7,7 @@ class AssertDescription
     private $assertClass;
     /** @var string */
     private $assertMethod;
-    /** @var string */
+    /** @var array */
     private $assertParams;
 
     /**
