@@ -4,7 +4,8 @@ namespace ivol\Model;
 class AssertFactory
 {
     /**
-     * @param $assert
+     * @param array $assert array('assertName' => array($assertParam1, $assertParam2, ..)
+     * @return AssertDescription
      */
     public function create($assert)
     {
@@ -25,5 +26,27 @@ class AssertFactory
             throw new \RuntimeException('Cannot build assertation');
         }
         return new AssertDescription($assertClass, $assertMethod, $assertParams);
+    }
+
+    /**
+     * @param string $xml @see tests/Data/example.xml for format
+     * @return AssertDescription[]
+     */
+    public function createFromXml($xml)
+    {
+        $asserts = [];
+        $assertsXml = new \SimpleXMLElement($xml);
+        if (!$assertsXml->assert) {
+            return $asserts;
+        }
+        foreach ($assertsXml->assert as $assert) {
+            if (!$assert->name) {
+                // XXX: Add proper exception here
+                throw new \RuntimeException("Cannot parse xml element");
+            }
+            $assertParams = $assert->params->param ? (array) $assert->params->param: [];
+            $asserts[] = $this->create(array((string) $assert->name => $assertParams));
+        }
+        return $asserts;
     }
 }

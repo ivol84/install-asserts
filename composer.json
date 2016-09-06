@@ -13,7 +13,8 @@
     "psr-4": {
       "ivol\\": ["src/"],
       "ivol\\tests\\": ["tests/"]
-    }
+    },
+    "files": ["PhpUnitXmlLoader.php"]
   },
   "require": {
     "php": ">=5.5.0",

@@ -8,17 +8,18 @@ use ivol\tests\Helper\CustomAssert;
 
 class PhpUnitXmlLoaderTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var  PhpUnitXmlLoader */
+    /** @var  \PhpUnitXmlLoader */
     private $sut;
 
     protected function setUp()
     {
-        $this->sut = new PhpUnitXmlLoader();
+        $this->sut = new \PhpUnitXmlLoader();
+        ConfigurablePhpUnitTest::clearAsserts();
     }
 
     public function testLoadFillAsserts()
     {
-        $actual = $this->sut->load('', realpath(__DIR__ . '/../Data/example.xml'));
+        $actual = $this->sut->load('', realpath(__DIR__ . '/Data/example.xml'));
 
         $this->assertInstanceOf('\ReflectionClass', $actual);
         $this->assertEquals(ConfigurablePhpUnitTest::__CLASS, $actual->name);
@@ -35,7 +36,7 @@ class PhpUnitXmlLoaderTest extends \PHPUnit_Framework_TestCase
      */
     public function testLoadFailsOnInvalidXml()
     {
-        $this->sut->load('', realpath(__DIR__ . '/../Data/example_invalid.xml'));
+        $this->sut->load('', realpath(__DIR__ . '/Data/example_invalid.xml'));
     }
 
 }
