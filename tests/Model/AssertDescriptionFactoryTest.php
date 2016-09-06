@@ -16,8 +16,8 @@ class AssertDescriptionFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Cannot build assertation
+     * @expectedException ivol\Model\AssertionNotFoundException
+     * @expectedExceptionMessage Cannot find assertation
      */
     public function testCreateThrowsExceptionOnInvalidAssert()
     {
@@ -56,7 +56,7 @@ class AssertDescriptionFactoryTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @expectedException \RuntimeException
+     * @expectedException ivol\Model\AssertXmlException
      * @expectedExceptionMessage Cannot parse xml element
      */
     public function testCreateFromXmlFailsOnInvalidXml()

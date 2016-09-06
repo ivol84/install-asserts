@@ -22,8 +22,7 @@ class AssertDescriptionFactory
         } elseif (is_callable(array('ivol\Assert', $assertMethod))) {
             $assertClass = 'ivol\Assert';
         } else {
-            // TODO: Add custom exception
-            throw new \RuntimeException('Cannot build assertation');
+            throw new AssertionNotFoundException();
         }
         return new AssertDescription($assertClass, $assertMethod, $assertParams);
     }
@@ -41,8 +40,7 @@ class AssertDescriptionFactory
         }
         foreach ($assertsXml->assert as $assert) {
             if (!$assert->name) {
-                // XXX: Add proper exception here
-                throw new \RuntimeException("Cannot parse xml element");
+                throw new AssertXmlException('Cannot parse xml element');
             }
             $assertParams = $assert->params->param ? (array) $assert->params->param: [];
             $asserts[] = $this->create(array((string) $assert->name => $assertParams));
