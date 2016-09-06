@@ -1,7 +1,7 @@
 <?php
 namespace ivol\Model;
 
-class AssertFactory
+class AssertDescriptionFactory
 {
     /**
      * @param array $assert array('assertName' => array($assertParam1, $assertParam2, ..)
@@ -9,7 +9,6 @@ class AssertFactory
      */
     public function create($assert)
     {
-        $assertClass = '';
         $methods = array_keys($assert);
         $assertMethod = array_pop($methods);
         $assertParams = $assert[$assertMethod];

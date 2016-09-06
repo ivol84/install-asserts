@@ -1,7 +1,7 @@
 <?php
 
 use ivol\ConfigurablePhpUnitTest;
-use ivol\Model\AssertFactory;
+use ivol\Model\AssertDescriptionFactory;
 
 class PhpUnitXmlLoader implements \PHPUnit_Runner_TestSuiteLoader
 {
@@ -19,7 +19,7 @@ class PhpUnitXmlLoader implements \PHPUnit_Runner_TestSuiteLoader
         }
         $suiteClassName = \ivol\ConfigurablePhpUnitTest::__CLASS;
         $suiteClass = new \ReflectionClass($suiteClassName);
-        $factory = new AssertFactory();
+        $factory = new AssertDescriptionFactory();
         $asserts = $factory->createFromXml(file_get_contents($suiteClassFile));
         foreach ($asserts as $assert) {
             ConfigurablePhpUnitTest::addAssert($assert);

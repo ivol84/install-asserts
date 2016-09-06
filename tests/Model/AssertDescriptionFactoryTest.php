@@ -2,17 +2,17 @@
 namespace ivol\tests\Model;
 
 use ivol\Model\AssertDescription;
-use ivol\Model\AssertFactory;
+use ivol\Model\AssertDescriptionFactory;
 use ivol\tests\Helper\CustomAssert;
 
-class AssertFactoryTest extends \PHPUnit_Framework_TestCase
+class AssertDescriptionFactoryTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var  AssertFactory */
+    /** @var  AssertDescriptionFactory */
     private $sut;
 
     protected function setUp()
     {
-        $this->sut = new AssertFactory();
+        $this->sut = new AssertDescriptionFactory();
     }
 
     /**
@@ -44,6 +44,4 @@ class AssertFactoryTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(new AssertDescription(CustomAssert::__CLASS, 'assertInCustomClass', array()), $actual);
     }
-
-
 }
