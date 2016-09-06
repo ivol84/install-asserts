@@ -4,6 +4,7 @@ namespace ivol\tests\Runner;
 use ivol\ConfigurablePhpUnitTest;
 use ivol\Model\AssertDescription;
 use ivol\Model\AssertDescriptionFactory;
+use ivol\Model\XmlNotFoundException;
 use ivol\Runner\PhpUnitXmlLoader;
 use ivol\tests\Helper\CustomAssert;
 
@@ -40,12 +41,25 @@ class PhpUnitXmlLoaderTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($expectedAsserts, $actualAsserts);
     }
 
-    /**
-     * @expectedException \RuntimeException
-     * @expectedExceptionMessage Cannot read xml example_missed.xml
-     */
     public function testLoadFailsOnMissedXml()
     {
-        $this->sut->load('', 'example_missed.xml');
+        try {
+            $this->sut->load('', 'example_missed.xml');
+        } catch (XmlNotFoundException $e) {
+            $this->assertEquals('Cannot read xml example_missed.xml', $e->getMessage());
+            return;
+        }
+        $this->fail('Expect exception.');
+    }
+
+    public function testLoadOnXmlNotFoundByPhpUnit()
+    {
+        try {
+            $this->sut->load('example_missed.xml', '');
+        } catch (XmlNotFoundException $e) {
+            $this->assertEquals('Cannot read xml example_missed.xml', $e->getMessage());
+            return;
+        }
+        $this->fail('Expect exception.');
     }
 }

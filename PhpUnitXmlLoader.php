@@ -2,6 +2,7 @@
 
 use ivol\ConfigurablePhpUnitTest;
 use ivol\Model\AssertDescriptionFactory;
+use ivol\Model\XmlNotFoundException;
 
 class PhpUnitXmlLoader implements \PHPUnit_Runner_TestSuiteLoader
 {
@@ -13,7 +14,6 @@ class PhpUnitXmlLoader implements \PHPUnit_Runner_TestSuiteLoader
         $this->setFactory(new AssertDescriptionFactory());
     }
 
-
     /**
      * @param string $suiteClassName
      * @param string $suiteClassFile
@@ -22,11 +22,12 @@ class PhpUnitXmlLoader implements \PHPUnit_Runner_TestSuiteLoader
      */
     public function load($suiteClassName, $suiteClassFile = '')
     {
-        if (!$suiteClassFile) {
-            $suiteClassFile = 'check_installation.xml';
+        // PhpUnit decides that passed argument is $suiteClassName if xml not found
+        if (!$suiteClassFile && $suiteClassName) {
+            throw new XmlNotFoundException($suiteClassName);
         }
         if (!file_exists($suiteClassFile)) {
-            throw new RuntimeException("Cannot read xml $suiteClassFile");
+            throw new XmlNotFoundException($suiteClassFile);
         }
         $suiteClassName = \ivol\ConfigurablePhpUnitTest::__CLASS;
         $suiteClass = new \ReflectionClass($suiteClassName);

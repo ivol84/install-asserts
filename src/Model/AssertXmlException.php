@@ -1,5 +1,5 @@
 <?php
 namespace ivol\Model;
 
-class AssertXmlException extends \RuntimeException
+class AssertXmlException extends \PHPUnit_Framework_Exception
 {}

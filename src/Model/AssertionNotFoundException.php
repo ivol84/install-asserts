@@ -3,7 +3,7 @@ namespace ivol\Model;
 
 use Exception;
 
-class AssertionNotFoundException extends \RuntimeException
+class AssertionNotFoundException extends \PHPUnit_Framework_Exception
 {
     private $exceptionMessage = 'Cannot find assertation';
 
