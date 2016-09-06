@@ -16,6 +16,8 @@ Usage
 -----
 See example in see [AssertTest](https://github.com/ivol84/install-asserts/blob/master/tests/AssertTest.php).
 
+Run from command line, like: ./vendor/bin/phpunit --loader=PhpUnitXmlLoader --include-path=../../src/Runner tests/Data/example.xml 
+
 
 License
 -------
